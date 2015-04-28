@@ -11,6 +11,8 @@ public class Done_PlayerController : MonoBehaviour
 {
 	public float speed;
 	public float tilt;
+	public float currentRotation = 0f;
+	public float rotationSpeed;
 	public Done_Boundary boundary;
 
 	public GameObject shot;
@@ -34,6 +36,10 @@ public class Done_PlayerController : MonoBehaviour
 		float moveHorizontal = Input.GetAxis ("Horizontal");
 		float moveVertical = Input.GetAxis ("Vertical");
 
+		Debug.Log(string.Format("Horizontal: {0}     Vertical: {1}", moveHorizontal, moveVertical));
+
+		float rotationDegreesDelta = moveHorizontal * rotationSpeed;
+
 		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
 		rigidbody.velocity = movement * speed;
 		
@@ -43,7 +49,9 @@ public class Done_PlayerController : MonoBehaviour
 			0.0f, 
 			Mathf.Clamp (rigidbody.position.z, boundary.zMin, boundary.zMax)
 		);
-		
-		rigidbody.rotation = Quaternion.Euler (0.0f, 0.0f, rigidbody.velocity.x * -tilt);
+
+		currentRotation += rotationDegreesDelta;
+		//rigidbody.rotation = Quaternion.Euler (0.0f, rotationDegreesDelta, rigidbody.velocity.x * -tilt);
+		rigidbody.MoveRotation(Quaternion.Euler(0f, currentRotation, 0f));
 	}
 }

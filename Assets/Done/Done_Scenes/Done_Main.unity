@@ -4314,6 +4314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   tilt: 5
+  rotationSpeed: 20
   boundary:
     xMin: -12
     xMax: 12
@@ -5979,6 +5980,14 @@ Prefab:
     - target: {fileID: 6400000, guid: 738bdf56857a65f479c367c7b62c4ad7, type: 2}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 738bdf56857a65f479c367c7b62c4ad7, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 738bdf56857a65f479c367c7b62c4ad7, type: 2}
+      propertyPath: rotationSpeed
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 738bdf56857a65f479c367c7b62c4ad7, type: 2}
