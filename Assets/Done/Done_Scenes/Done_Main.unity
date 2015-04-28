@@ -141,6 +141,14 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 19800002, guid: 9930946b7c5f48e44aef1e56c2de7315, type: 2}
+      propertyPath: ShapeModule.boxX
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 9930946b7c5f48e44aef1e56c2de7315, type: 2}
+      propertyPath: ShapeModule.boxX
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9930946b7c5f48e44aef1e56c2de7315, type: 2}
   m_RootGameObject: {fileID: 893074391}
@@ -421,7 +429,7 @@ ParticleSystem:
     radius: 1
     angle: 25
     length: 5
-    boxX: 15
+    boxX: 30
     boxY: 1
     boxZ: 1
     placementMode: 0
@@ -1514,7 +1522,7 @@ Transform:
   - {fileID: 215090429}
   - {fileID: 942249507}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!1 &942249506
 GameObject:
   m_ObjectHideFlags: 0
@@ -1790,7 +1798,7 @@ ParticleSystem:
     radius: 1
     angle: 25
     length: 5
-    boxX: 15
+    boxX: 30
     boxY: 1
     boxZ: 1
     placementMode: 0
@@ -4061,10 +4069,10 @@ Transform:
   m_GameObject: {fileID: 1112871355}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 5}
-  m_LocalScale: {x: 15, y: 1, z: 20}
+  m_LocalScale: {x: 30, y: 1, z: 20}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!1 &1171993749
 GameObject:
   m_ObjectHideFlags: 0
@@ -4307,8 +4315,8 @@ MonoBehaviour:
   speed: 10
   tilt: 5
   boundary:
-    xMin: -6
-    xMax: 6
+    xMin: -12
+    xMax: 12
     zMin: -4
     zMax: 8
   shot: {fileID: 100000, guid: f4ec271e525e14ca9927a07e6a2e153d, type: 2}
@@ -4635,7 +4643,7 @@ Transform:
   m_GameObject: {fileID: 1687857889}
   m_LocalRotation: {x: .707106888, y: 0, z: 0, w: .707106769}
   m_LocalPosition: {x: 0, y: -10, z: 0}
-  m_LocalScale: {x: 15, y: 30, z: 1}
+  m_LocalScale: {x: 30, y: 30, z: 1}
   m_Children:
   - {fileID: 1751715183}
   m_Father: {fileID: 0}
@@ -5954,11 +5962,11 @@ Prefab:
       objectReference: {fileID: 1904691131}
     - target: {fileID: 11400000, guid: 738bdf56857a65f479c367c7b62c4ad7, type: 2}
       propertyPath: boundary.xMin
-      value: -6
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 738bdf56857a65f479c367c7b62c4ad7, type: 2}
       propertyPath: boundary.xMax
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 738bdf56857a65f479c367c7b62c4ad7, type: 2}
       propertyPath: boundary.zMin
