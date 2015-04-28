@@ -4320,7 +4320,7 @@ MonoBehaviour:
     xMin: -12
     xMax: 12
     zMin: -4
-    zMax: 8
+    zMax: 14
   shot: {fileID: 100000, guid: f4ec271e525e14ca9927a07e6a2e153d, type: 2}
   shotSpawn: {fileID: 1419243722}
   fireRate: .25
@@ -5976,7 +5976,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 738bdf56857a65f479c367c7b62c4ad7, type: 2}
       propertyPath: boundary.zMax
-      value: 8
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 6400000, guid: 738bdf56857a65f479c367c7b62c4ad7, type: 2}
       propertyPath: m_Enabled
