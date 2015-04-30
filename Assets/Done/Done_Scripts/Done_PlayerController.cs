@@ -13,11 +13,18 @@ public class Done_PlayerController : MonoBehaviour
 	public float rotationSpeed;
 	public Done_Boundary boundary;
 
+	ParticleSystem[] particleSystems;
+
 	public GameObject shot;
 	public Transform shotSpawn;
 	public float fireRate;
 	 
 	private float nextFire;
+
+	void Awake()
+	{
+		particleSystems = GetComponentsInChildren<ParticleSystem>();
+	}
 	
 	void Update ()
 	{
@@ -39,6 +46,9 @@ public class Done_PlayerController : MonoBehaviour
 		rotationEulerAngles.y += moveHorizontal * rotationSpeed;
 
 		rigidbody.MoveRotation(Quaternion.Euler(rotationEulerAngles));
+		foreach (var system in particleSystems) {
+			system.startRotation = rotationEulerAngles.y * Mathf.Deg2Rad;
+		}
 
 		// Add thrust with inertia
 		float thrust = moveVertical * speed;
