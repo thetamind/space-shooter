@@ -4347,7 +4347,7 @@ Rigidbody:
   m_GameObject: {fileID: 1457065275}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: .5
   m_AngularDrag: .0500000007
   m_UseGravity: 0
   m_IsKinematic: 0
@@ -5989,6 +5989,14 @@ Prefab:
     - target: {fileID: 11400000, guid: 738bdf56857a65f479c367c7b62c4ad7, type: 2}
       propertyPath: rotationSpeed
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400000, guid: 738bdf56857a65f479c367c7b62c4ad7, type: 2}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400000, guid: 738bdf56857a65f479c367c7b62c4ad7, type: 2}
+      propertyPath: m_Drag
+      value: .5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 738bdf56857a65f479c367c7b62c4ad7, type: 2}

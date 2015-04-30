@@ -36,15 +36,13 @@ public class Done_PlayerController : MonoBehaviour
 		float moveHorizontal = Input.GetAxis ("Horizontal");
 		float moveVertical = Input.GetAxis ("Vertical");
 
-		Debug.Log(string.Format("Horizontal: {0}     Vertical: {1}", moveHorizontal, moveVertical));
-
 		float rotationDegreesDelta = moveHorizontal * rotationSpeed;
 		float impulse = moveVertical * 5.0f;
 
 		Vector3 movement = new Vector3 (0.0f, 0.0f, moveVertical) * speed;
 		float thrust = moveVertical * speed;
 		Vector3 move;
-		rigidbody.AddForce(transform.forward * thrust);
+		rigidbody.AddForce(transform.forward * thrust, ForceMode.Acceleration);
 		
 		rigidbody.position = new Vector3
 		(
