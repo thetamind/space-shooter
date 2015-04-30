@@ -70,7 +70,11 @@ public class Done_GameController : MonoBehaviour
 				Physics.Linecast(outerPoint, center, out hit);
 				Vector3 spawnPosition = hit.point;
 
-				Vector3 relativePosition = spawnPosition - center;
+
+				Vector2 rand = Random.insideUnitCircle * boundary.collider.bounds.size.magnitude;
+				Vector3 target = new Vector3(rand.x + center.x, center.y, rand.y + center.z);
+
+				Vector3 relativePosition = spawnPosition - target;
 				Quaternion spawnRotation = Quaternion.LookRotation(relativePosition);
 
 				GameObject hazard = hazards [Random.Range (0, hazards.Length)];
