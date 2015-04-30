@@ -42,14 +42,38 @@ public class Done_GameController : MonoBehaviour
 	
 	IEnumerator SpawnWaves ()
 	{
+		Transform boundary = GameObject.FindGameObjectWithTag("Boundary").GetComponent<Transform>();
+		Vector3 center = boundary.transform.position;
+
 		yield return new WaitForSeconds (startWait);
 		while (true)
 		{
+
+			Vector3 r = Random.onUnitSphere; // * boundary.collider.bounds.extents;
+
 			for (int i = 0; i < hazardCount; i++)
 			{
+				// Random point within donut
+				float rho = Random.Range(5.0f, 10.0f);
+				float phi = Random.Range(0.0f, 2.0f * Mathf.PI);
+
+				float x = Mathf.Sqrt(rho) * Mathf.Cos(phi);
+				float y = Mathf.Sqrt(rho) * Mathf.Sin(phi);
+
+				// Scale and transform to boundary
+				x *= boundary.collider.bounds.size.x / 2;
+				y *= boundary.collider.bounds.size.z / 2;
+				Vector3 outerPoint = new Vector3(x, 0.0f, y + center.z);
+
+				// Linecast from outside boundary towards center
+				RaycastHit hit;
+				Physics.Linecast(outerPoint, center, out hit);
+				Vector3 spawnPosition = hit.point;
+
+				Vector3 relativePosition = spawnPosition - center;
+				Quaternion spawnRotation = Quaternion.LookRotation(relativePosition);
+
 				GameObject hazard = hazards [Random.Range (0, hazards.Length)];
-				Vector3 spawnPosition = new Vector3 (Random.Range (-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
-				Quaternion spawnRotation = Quaternion.identity;
 				Instantiate (hazard, spawnPosition, spawnRotation);
 				yield return new WaitForSeconds (spawnWait);
 			}
