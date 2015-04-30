@@ -10,8 +10,6 @@ public class Done_Boundary
 public class Done_PlayerController : MonoBehaviour
 {
 	public float speed;
-	public float tilt;
-	public float currentRotation = 0f;
 	public float rotationSpeed;
 	public Done_Boundary boundary;
 
@@ -36,12 +34,14 @@ public class Done_PlayerController : MonoBehaviour
 		float moveHorizontal = Input.GetAxis ("Horizontal");
 		float moveVertical = Input.GetAxis ("Vertical");
 
-		float rotationDegreesDelta = moveHorizontal * rotationSpeed;
-		float impulse = moveVertical * 5.0f;
+		// Directly control rotation without inertia
+		Vector3 rotationEulerAngles = rigidbody.rotation.eulerAngles;
+		rotationEulerAngles.y += moveHorizontal * rotationSpeed;
 
-		Vector3 movement = new Vector3 (0.0f, 0.0f, moveVertical) * speed;
+		rigidbody.MoveRotation(Quaternion.Euler(rotationEulerAngles));
+
+		// Add thrust with inertia
 		float thrust = moveVertical * speed;
-		Vector3 move;
 		rigidbody.AddForce(transform.forward * thrust, ForceMode.Acceleration);
 		
 		rigidbody.position = new Vector3
@@ -50,9 +50,5 @@ public class Done_PlayerController : MonoBehaviour
 			0.0f, 
 			Mathf.Clamp (rigidbody.position.z, boundary.zMin, boundary.zMax)
 		);
-
-		currentRotation += rotationDegreesDelta;
-		//rigidbody.rotation = Quaternion.Euler (0.0f, rotationDegreesDelta, rigidbody.velocity.x * -tilt);
-		rigidbody.MoveRotation(Quaternion.Euler(0f, currentRotation, 0f));
 	}
 }
