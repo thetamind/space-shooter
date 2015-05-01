@@ -5,6 +5,11 @@ public class ScreenWrap : MonoBehaviour
 {
 	private Camera cam;
 
+	public Vector3 viewportPos;
+	public Vector3 worldPos;
+	
+	public Vector3 maybeViewportPos;
+
 	bool isWrappingX;
 	bool isWrappingY;
 
@@ -16,6 +21,19 @@ public class ScreenWrap : MonoBehaviour
 			Debug.LogWarning("Can't find main camera. Skipping.");
 			DestroyImmediate(this);
 		}
+		
+		var sb = new System.Text.StringBuilder();
+		for(int i = 0; i < 100; i++)
+		{
+			float x = (i * 0.1f) - 5.0f;
+			float y = Mathf.Abs(x % 1.0f);
+			sb.Append(x.ToString("N2"));
+			sb.Append(" - ");
+			sb.Append(y.ToString("N2"));
+			sb.AppendLine();
+		}
+		
+		Debug.Log(sb.ToString());
 	}
 
 	void OnBecameVisible()
@@ -33,31 +51,66 @@ public class ScreenWrap : MonoBehaviour
 	void LateUpdate()
 	{
 		DoWrap();
+		this.viewportPos = cam.WorldToViewportPoint(transform.position);
+		this.worldPos = transform.position;
 	}
 
 	private string prevPosLog;
 	void DoWrap()
 	{
-		var viewportPosition = cam.WorldToViewportPoint(transform.position);
+		var worldPosition = transform.position;
+		var viewportPosition = cam.WorldToViewportPoint(worldPosition);
 		var newViewportPosition = new Vector3(
 			viewportPosition.x % 1.0f,
 			viewportPosition.y % 1.0f,
 			viewportPosition.z
 		);
 		
+
+		
+// if (x < x_min)
+//     x = x_max - (x_min - x) % (x_max - x_min);
+// else
+//     x = x_min + (x - x_min) % (x_max - x_min);
+		
+		Vector3 newWorldPosition = cam.ViewportToWorldPoint(newViewportPosition);
+		newWorldPosition.y = worldPos.y;
+			
+		this.maybeViewportPos = newViewportPosition;
+		
+		if (newViewportPosition.x < 0)
+		{
+			maybeViewportPos.x = 1.0f - (0.0f - newViewportPosition.x) % (1.0f - 0.0f);
+			newViewportPosition.x = maybeViewportPos.x; 
+		}
+		
+		if (newViewportPosition.y < 0)
+		{
+			maybeViewportPos.y = 1.0f - (0.0f - newViewportPosition.y) % (1.0f - 0.0f); 
+			newViewportPosition.y = maybeViewportPos.y; 
+		}
+		
+		newWorldPosition = cam.ViewportToWorldPoint(newViewportPosition);
+		newWorldPosition.y = worldPos.y;
+		
 		
 		if (viewportPosition != newViewportPosition)
 		{
-			Debug.Log("WRAPPED");
-			Vector3 newWorldPosition = cam.ViewportToWorldPoint(newViewportPosition);
+// 			Vector3 newWorldPosition = cam.ViewportToWorldPoint(newViewportPosition);
+// 			newWorldPosition.y = worldPos.y;
 			
-			string toLog = string.Format("Viewport: ({0:N2}, {1:N2}, {2:N2})  World: ({3:N2}, {4:N2}, {5:N2})",
+						
+			string before = string.Format("B=> Viewport: ({0:N2}, {1:N2}, {2:N2})  World: ({3:N2}, {4:N2}, {5:N2})",
 				viewportPosition.x, viewportPosition.y, viewportPosition.z,
+				worldPosition.x, worldPosition.y, worldPosition.z
+				);
+				
+			string after = string.Format("A=> Viewport: ({0:N2}, {1:N2}, {2:N2})  World: ({3:N2}, {4:N2}, {5:N2})",
+				newViewportPosition.x, newViewportPosition.y, newViewportPosition.z,
 				newWorldPosition.x, newWorldPosition.y, newWorldPosition.z
 				);
 			
-			if (prevPosLog != toLog) Debug.Log(toLog);
-			prevPosLog = toLog;
+			Debug.Log(string.Format("{0}\n{1}", before, after));
 			
 			transform.position = newWorldPosition;
 		}

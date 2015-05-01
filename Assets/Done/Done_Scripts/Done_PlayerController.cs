@@ -54,12 +54,12 @@ public class Done_PlayerController : MonoBehaviour
 		float thrust = moveVertical * speed;
 		rigidbody.AddForce(transform.forward * thrust, ForceMode.Acceleration);
 		
-		rigidbody.position = new Vector3
-		(
-			Wrap(rigidbody.position.x, boundary.xMin, boundary.xMax),
-			0.0f, 
-			Wrap(rigidbody.position.z, boundary.zMin, boundary.zMax)
-		);
+// 		rigidbody.position = new Vector3
+// 		(
+// 			Wrap(rigidbody.position.x, boundary.xMin, boundary.xMax),
+// 			0.0f, 
+// 			Wrap(rigidbody.position.z, boundary.zMin, boundary.zMax)
+// 		);
 	}
 
 	float Wrap(float position, float min, float max)
