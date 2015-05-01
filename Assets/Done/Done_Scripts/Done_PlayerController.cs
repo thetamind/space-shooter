@@ -64,8 +64,8 @@ public class Done_PlayerController : MonoBehaviour
 
 	float Wrap(float position, float min, float max)
 	{
-		if (position < min) return max;
-		if (position > max) return min;
+		if (position < min) return max - (min - position) % (max - min);
+		if (position > max) return min + (position - min) % (max - min);
 		return position;
 	}
 }
