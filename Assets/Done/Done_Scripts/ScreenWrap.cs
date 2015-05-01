@@ -4,9 +4,6 @@ public class ScreenWrap : MonoBehaviour
 {
 	private Camera cam;
 
-	public Vector3 viewportPos;
-	public Vector3 worldPos;
-
 	void Start()
 	{
 		cam = Camera.main;
@@ -27,8 +24,6 @@ public class ScreenWrap : MonoBehaviour
 	void LateUpdate()
 	{
 		DoWrap();
-		this.viewportPos = cam.WorldToViewportPoint(transform.position);
-		this.worldPos = transform.position;
 	}
 
 	void DoWrap()
@@ -44,7 +39,7 @@ public class ScreenWrap : MonoBehaviour
 		
 		Vector3 newWorldPosition = cam.ViewportToWorldPoint(newViewportPosition);
 		// Lock object to plane; seems to shift due to camera projection
-		newWorldPosition.y = worldPos.y;
+		newWorldPosition.y = worldPosition.y;
 		
 		if (viewportPosition != newViewportPosition)
 		{
