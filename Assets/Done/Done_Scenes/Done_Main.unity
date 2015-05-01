@@ -4315,10 +4315,10 @@ MonoBehaviour:
   speed: 10
   rotationSpeed: 3
   boundary:
-    xMin: -12
-    xMax: 12
-    zMin: -4
-    zMax: 14
+    xMin: -13.3000002
+    xMax: 13.3000002
+    zMin: -4.9000001
+    zMax: 14.9899998
   shot: {fileID: 100000, guid: f4ec271e525e14ca9927a07e6a2e153d, type: 2}
   shotSpawn: {fileID: 1419243722}
   fireRate: .25
@@ -5961,19 +5961,19 @@ Prefab:
       objectReference: {fileID: 1904691131}
     - target: {fileID: 11400000, guid: 738bdf56857a65f479c367c7b62c4ad7, type: 2}
       propertyPath: boundary.xMin
-      value: -12
+      value: -13.3000002
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 738bdf56857a65f479c367c7b62c4ad7, type: 2}
       propertyPath: boundary.xMax
-      value: 12
+      value: 13.3000002
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 738bdf56857a65f479c367c7b62c4ad7, type: 2}
       propertyPath: boundary.zMin
-      value: -4
+      value: -4.9000001
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 738bdf56857a65f479c367c7b62c4ad7, type: 2}
       propertyPath: boundary.zMax
-      value: 14
+      value: 14.9899998
       objectReference: {fileID: 0}
     - target: {fileID: 6400000, guid: 738bdf56857a65f479c367c7b62c4ad7, type: 2}
       propertyPath: m_Enabled
