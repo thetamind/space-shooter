@@ -68,4 +68,17 @@ public class Done_PlayerController : MonoBehaviour
 		if (position > max) return min + (position - min) % (max - min);
 		return position;
 	}
+
+	void OnDrawGizmos()
+	{
+		Gizmos.color = Color.green;
+		Gizmos.DrawLine(new Vector3(boundary.xMin, 0f, boundary.zMin),
+			new Vector3(boundary.xMax, 0f, boundary.zMin));
+		Gizmos.DrawLine(new Vector3(boundary.xMax, 0f, boundary.zMin),
+			new Vector3(boundary.xMax, 0f, boundary.zMax));
+		Gizmos.DrawLine(new Vector3(boundary.xMax, 0f, boundary.zMax),
+			new Vector3(boundary.xMin, 0f, boundary.zMax));
+		Gizmos.DrawLine(new Vector3(boundary.xMin, 0f, boundary.zMax),
+			new Vector3(boundary.xMin, 0f, boundary.zMin));
+	}
 }

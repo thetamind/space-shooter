@@ -9,4 +9,10 @@ public class Done_Mover : MonoBehaviour
 	{
 		rigidbody.velocity = transform.forward * speed;
 	}
+
+	public void OnDrawGizmos()
+	{
+		Gizmos.color = Color.red;
+		Gizmos.DrawRay(transform.position, rigidbody.velocity);
+	}
 }

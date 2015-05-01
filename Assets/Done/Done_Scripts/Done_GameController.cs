@@ -91,6 +91,42 @@ public class Done_GameController : MonoBehaviour
 			}
 		}
 	}
+
+	public void OnDrawGizmos()
+	{
+		Transform boundary = GameObject.FindGameObjectWithTag("Boundary").GetComponent<Transform>();
+		Vector3 center = boundary.transform.position;
+
+		Gizmos.color = Color.yellow;
+		for(int i = 0; i < 25; i++)
+		{
+			float rho = Random.Range(5.0f, 10.0f);
+			float phi = Random.Range(0.0f, 2.0f * Mathf.PI);
+
+			float x = Mathf.Sqrt(rho) * Mathf.Cos(phi);
+			float y = Mathf.Sqrt(rho) * Mathf.Sin(phi);
+
+			x *= boundary.collider.bounds.size.x / 2;
+			y *= boundary.collider.bounds.size.z / 2;
+			Vector3 xxx = new Vector3(x, 0.0f, y + center.z);
+
+			RaycastHit hit;
+			Physics.Linecast(xxx, center, out hit);
+//			Gizmos.color = Color.red;
+//			Gizmos.DrawLine(xxx, center);
+			Vector3 hitPoint = hit.point;
+
+
+			Vector3 relativePos = hitPoint - center;
+			Quaternion spawnRotation = Quaternion.LookRotation(relativePos);
+
+			Vector3 close = boundary.collider.ClosestPointOnBounds(xxx);
+
+			Vector3 pos = new Vector3 (Random.Range (-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
+			Gizmos.color = Color.yellow;
+// 			Gizmos.DrawSphere(hitPoint, 0.1f);
+		}
+	}
 	
 	public void AddScore (int newScoreValue)
 	{
