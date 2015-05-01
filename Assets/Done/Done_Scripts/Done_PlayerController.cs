@@ -56,9 +56,16 @@ public class Done_PlayerController : MonoBehaviour
 		
 		rigidbody.position = new Vector3
 		(
-			Mathf.Clamp (rigidbody.position.x, boundary.xMin, boundary.xMax), 
+			Wrap(rigidbody.position.x, boundary.xMin, boundary.xMax),
 			0.0f, 
-			Mathf.Clamp (rigidbody.position.z, boundary.zMin, boundary.zMax)
+			Wrap(rigidbody.position.z, boundary.zMin, boundary.zMax)
 		);
+	}
+
+	float Wrap(float position, float min, float max)
+	{
+		if (position < min) return max;
+		if (position > max) return min;
+		return position;
 	}
 }
